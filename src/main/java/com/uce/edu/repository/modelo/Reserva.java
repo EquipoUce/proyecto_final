@@ -82,6 +82,14 @@ public class Reserva {
 	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
 	}
+
+	@Override
+	public String toString() {
+		return "Reserva [id=" + id + ", numeroReserva=" + numeroReserva + ", fechaInicio=" + fechaInicio + ", fechaFin="
+				+ fechaFin + ", vehiculo=" + vehiculo + ", cliente=" + cliente + "]";
+	}
+
+	
 	
 	
 

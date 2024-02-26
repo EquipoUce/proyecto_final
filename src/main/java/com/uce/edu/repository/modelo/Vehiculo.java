@@ -6,6 +6,7 @@ import java.util.List;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -37,6 +38,8 @@ public class Vehiculo {
 	private BigDecimal avaluoVehiculo;
 	@Column(name="vehi_avaluo_por_dia")
 	private BigDecimal avaluoPorDia;
+	@Column(name = "vehi_estado")
+	private Character estado;
 	
 	@OneToMany(mappedBy = "vehiculo")
 	private List<Reserva> reservas;
@@ -118,7 +121,12 @@ public class Vehiculo {
 	public void setAvaluoPorDia(BigDecimal avaluoPorDia) {
 		this.avaluoPorDia = avaluoPorDia;
 	}
-	
+
+	@Override
+	public String toString() {
+		return "Vehiculo [id=" + id + ", placa=" + placa + ", modelo=" + modelo + ", reservas=" + reservas + "]";
+	}
+
 	
 
 }

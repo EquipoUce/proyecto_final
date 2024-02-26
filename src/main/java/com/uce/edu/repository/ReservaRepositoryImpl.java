@@ -9,11 +9,8 @@ import com.uce.edu.repository.modelo.Reserva;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
+import jakarta.persistence.Query;
 import jakarta.persistence.TypedQuery;
-import jakarta.persistence.criteria.CriteriaBuilder;
-import jakarta.persistence.criteria.CriteriaQuery;
-import jakarta.persistence.criteria.Predicate;
-import jakarta.persistence.criteria.Root;
 import jakarta.transaction.Transactional;
 import jakarta.transaction.Transactional.TxType;
 
@@ -39,7 +36,7 @@ public class ReservaRepositoryImpl implements IReservaRepository {
 	public List<Reserva> reportarPorRangoFecha(LocalDateTime fechaInicio, LocalDateTime fechaFin) {
 		// TODO Auto-generated method stub
 		//select
-		CriteriaBuilder criteriaBuilder = this.entityManager.getCriteriaBuilder();
+		/*CriteriaBuilder criteriaBuilder = this.entityManager.getCriteriaBuilder();
 		CriteriaQuery<Reserva> criteriaQuery = criteriaBuilder.createQuery(Reserva.class);
 		//from
 		Root<Reserva> myFrom = criteriaQuery.from(Reserva.class);
@@ -54,7 +51,12 @@ public class ReservaRepositoryImpl implements IReservaRepository {
 		
 		TypedQuery<Reserva> query = this.entityManager.createQuery(criteriaQuery);
 		return query.getResultList();
-		//revisar el join 
+		//revisar el join */
+		Query query = this.entityManager.createNativeQuery("SELECT r.*, c.*, v.* FROM reserva r JOIN cliente c ON r.rese_id_cliente = c.clie_id JOIN vehiculo v ON r.rese_id_vehiculo = v.vehi_id WHERE r.rese_fecha_inicio = :fechaInicio AND r.rese_fecha_fin = :fechaFin",Reserva.class);
+		query.setParameter("fechaInicio", fechaInicio);
+		query.setParameter("fechaFin", fechaFin);
+		
+		return (List<Reserva>)query.getResultList();
 	}
 
 	@Override
