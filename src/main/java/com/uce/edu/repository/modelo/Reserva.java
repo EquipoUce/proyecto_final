@@ -1,5 +1,6 @@
 package com.uce.edu.repository.modelo;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 import jakarta.persistence.Column;
@@ -20,12 +21,27 @@ public class Reserva {
 	@SequenceGenerator(name = "seq_reserva", sequenceName = "seq_reserva", allocationSize = 1)
 	@Column(name="rese_id")
 	private Integer id;
+	
 	@Column(name="rese_numero_reserva")
 	private String numeroReserva;
+	
 	@Column(name="rese_fecha_inicio")
 	private LocalDateTime fechaInicio;
+	
 	@Column(name="rese_fecha_fin")
 	private LocalDateTime fechaFin;
+	
+	@Column(name="rese_estado")
+	private String estado;
+	
+	@Column(name="rese_valor_sub_total")
+	private BigDecimal valorSubTotal;
+	
+	@Column(name="rese_valor_ice")
+	private BigDecimal valorICE;
+	
+	@Column(name="rese_valor_total_a_pagar")
+	private BigDecimal valorTotalAPagar;
 	
 	@ManyToOne
 	@JoinColumn (name = "rese_id_vehiculo")
@@ -35,6 +51,7 @@ public class Reserva {
 	@JoinColumn (name = "rese_id_cliente")
 	private Cliente cliente;
 
+	//Setter and Getter
 	public Integer getId() {
 		return id;
 	}
@@ -83,14 +100,37 @@ public class Reserva {
 		this.cliente = cliente;
 	}
 
-	@Override
-	public String toString() {
-		return "Reserva [id=" + id + ", numeroReserva=" + numeroReserva + ", fechaInicio=" + fechaInicio + ", fechaFin="
-				+ fechaFin + ", vehiculo=" + vehiculo + ", cliente=" + cliente + "]";
+	public String getEstado() {
+		return estado;
 	}
 
-	
-	
-	
+	public void setEstado(String estado) {
+		this.estado = estado;
+	}
+
+	public BigDecimal getValorSubTotal() {
+		return valorSubTotal;
+	}
+
+	public void setValorSubTotal(BigDecimal valorSubTotal) {
+		this.valorSubTotal = valorSubTotal;
+	}
+
+	public BigDecimal getValorICE() {
+		return valorICE;
+	}
+
+	public void setValorICE(BigDecimal valorICE) {
+		this.valorICE = valorICE;
+	}
+
+	public BigDecimal getValorTotalAPagar() {
+		return valorTotalAPagar;
+	}
+
+	public void setValorTotalAPagar(BigDecimal valorTotalAPagar) {
+		this.valorTotalAPagar = valorTotalAPagar;
+	}
+
 
 }

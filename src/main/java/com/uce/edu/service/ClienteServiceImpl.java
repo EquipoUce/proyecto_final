@@ -22,16 +22,4 @@ public class ClienteServiceImpl implements IClienteService {
 		this.clienteRepository.insertar(cliente);
 	}
 
-	@Override
-	public void actualizar(Cliente cliente) {
-		// TODO Auto-generated method stub
-		this.clienteRepository.actualizar(cliente);
-	}
-
-	@Override
-	public void borrarPorCedula(String cedula) {
-		// TODO Auto-generated method stub
-		this.clienteRepository.eliminarPorCedula(cedula);
-	}
-
 }

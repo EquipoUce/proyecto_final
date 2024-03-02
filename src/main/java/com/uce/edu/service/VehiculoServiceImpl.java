@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.uce.edu.repository.IVehiculoRepository;
 import com.uce.edu.repository.modelo.Vehiculo;
+import com.uce.edu.repository.modelo.dto.VehiculoDTO;
 @Service
 public class VehiculoServiceImpl implements IVehiculoService {
 	@Autowired
@@ -19,7 +20,7 @@ public class VehiculoServiceImpl implements IVehiculoService {
 	}
 
 	@Override
-	public List<Vehiculo> buscarPorModeloMarca(String marca, String modelo) {
+	public List<VehiculoDTO> buscarPorModeloMarca(String marca, String modelo) {
 		// TODO Auto-generated method stub
 		return this.iVehiculoRepository.seleccionarPorModeloMarca(marca, modelo);
 	}
@@ -36,10 +37,5 @@ public class VehiculoServiceImpl implements IVehiculoService {
 		this.iVehiculoRepository.actualizar(vehiculo);
 	}
 
-	@Override
-	public void borrarPorPlaca(String placa) {
-		// TODO Auto-generated method stub
-		this.iVehiculoRepository.eliminarPorPlaca(placa);
-	}
 
 }

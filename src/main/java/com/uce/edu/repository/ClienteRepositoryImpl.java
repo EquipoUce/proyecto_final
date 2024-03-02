@@ -33,18 +33,5 @@ public class ClienteRepositoryImpl implements IClienteRepository {
 		this.entityManager.persist(cliente);
 	}
 
-	@Override
-	@Transactional(value = TxType.MANDATORY)
-	public void actualizar(Cliente cliente) {
-		// TODO Auto-generated method stub
-		this.entityManager.merge(cliente);
-	}
-
-	@Override
-	@Transactional(value = TxType.MANDATORY)
-	public void eliminarPorCedula(String cedula) {
-		// TODO Auto-generated method stub
-		this.entityManager.remove(this.seleccionarPorCedula(cedula));
-	}
 
 }

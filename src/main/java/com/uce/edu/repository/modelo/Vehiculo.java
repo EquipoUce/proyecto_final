@@ -1,7 +1,6 @@
 package com.uce.edu.repository.modelo;
 
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
 import java.util.List;
 
 import jakarta.persistence.Column;
@@ -22,28 +21,38 @@ public class Vehiculo {
 	@SequenceGenerator(name = "seq_vehiculo", sequenceName = "seq_vehiculo", allocationSize = 1)
 	@Column(name="vehi_id")
 	private Integer id;
+	
 	@Column(name="vehi_placa")
 	private String placa;
+	
 	@Column(name="vehi_modelo")
 	private String modelo;
+	
 	@Column(name="vehi_marca")
 	private String marca;
-	@Column(name="vehi_anio_fabricaion")
-	private LocalDateTime anioFabricacion;
+	
+	@Column(name="vehi_anio_fabricacion")
+	private String anioFabricacion;
+	
 	@Column(name="vehi_pais_fabricacion")
 	private String paisFabricacion;
+	
 	@Column(name="vehi_cilindraje")
 	private String cilindraje;
+	
 	@Column(name="vehi_avaluo_vehiculo")
 	private BigDecimal avaluoVehiculo;
-	@Column(name="vehi_avaluo_por_dia")
-	private BigDecimal avaluoPorDia;
-	@Column(name = "vehi_estado")
-	private Character estado;
 	
-	@OneToMany(mappedBy = "vehiculo")
+	@Column(name="vehi_valor_por_dia")
+	private BigDecimal valorPorDia;
+	
+	@Column(name = "vehi_estado")
+	private String estado;
+	
+	@OneToMany(mappedBy = "vehiculo", fetch = FetchType.LAZY)
 	private List<Reserva> reservas;
 
+	//Setter and Getter
 	public Integer getId() {
 		return id;
 	}
@@ -55,13 +64,7 @@ public class Vehiculo {
 	public String getPlaca() {
 		return placa;
 	}
-	public LocalDateTime getAnioFabricacion() {
-		return anioFabricacion;
-	}
 
-	public void setAnioFabricacion(LocalDateTime anioFabricacion) {
-		this.anioFabricacion = anioFabricacion;
-	}
 	public void setPlaca(String placa) {
 		this.placa = placa;
 	}
@@ -81,7 +84,7 @@ public class Vehiculo {
 	public void setMarca(String marca) {
 		this.marca = marca;
 	}
-
+	
 	public String getPaisFabricacion() {
 		return paisFabricacion;
 	}
@@ -98,14 +101,6 @@ public class Vehiculo {
 		this.cilindraje = cilindraje;
 	}
 
-	public List<Reserva> getReservas() {
-		return reservas;
-	}
-
-	public void setReservas(List<Reserva> reservas) {
-		this.reservas = reservas;
-	}
-
 	public BigDecimal getAvaluoVehiculo() {
 		return avaluoVehiculo;
 	}
@@ -114,19 +109,38 @@ public class Vehiculo {
 		this.avaluoVehiculo = avaluoVehiculo;
 	}
 
-	public BigDecimal getAvaluoPorDia() {
-		return avaluoPorDia;
+	public BigDecimal getValorPorDia() {
+		return valorPorDia;
 	}
 
-	public void setAvaluoPorDia(BigDecimal avaluoPorDia) {
-		this.avaluoPorDia = avaluoPorDia;
+	public void setValorPorDia(BigDecimal valorPorDia) {
+		this.valorPorDia = valorPorDia;
 	}
 
-	@Override
-	public String toString() {
-		return "Vehiculo [id=" + id + ", placa=" + placa + ", modelo=" + modelo + ", reservas=" + reservas + "]";
+	public String getEstado() {
+		return estado;
 	}
 
+	public void setEstado(String estado) {
+		this.estado = estado;
+	}
+
+	public List<Reserva> getReservas() {
+		return reservas;
+	}
+
+	public void setReservas(List<Reserva> reservas) {
+		this.reservas = reservas;
+	}
+
+	public String getAnioFabricacion() {
+		return anioFabricacion;
+	}
+
+	public void setAnioFabricacion(String anioFabricacion) {
+		this.anioFabricacion = anioFabricacion;
+	}
+	
 	
 
 }

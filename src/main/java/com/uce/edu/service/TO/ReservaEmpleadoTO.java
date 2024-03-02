@@ -1,0 +1,65 @@
+package com.uce.edu.service.TO;
+
+public class ReservaEmpleadoTO {
+	private String placa;
+	private String modelo;
+	private String estado;
+	private String fecha; //UNIR ANTES DE CREAR EL OBJETO
+	private String cedula;
+
+	public ReservaEmpleadoTO() {
+		// TODO Auto-generated constructor stub
+	}
+
+	public ReservaEmpleadoTO(String placa, String modelo, String estado, String fecha, String cedula) {
+		super();
+		this.placa = placa;
+		this.modelo = modelo;
+		this.estado = estado;
+		this.fecha = fecha;
+		this.cedula = cedula;
+	}
+
+	public String getPlaca() {
+		return placa;
+	}
+
+	public void setPlaca(String placa) {
+		this.placa = placa;
+	}
+
+	public String getModelo() {
+		return modelo;
+	}
+
+	public void setModelo(String modelo) {
+		this.modelo = modelo;
+	}
+
+	public String getEstado() {
+		return estado;
+	}
+
+	public void setEstado(String estado) {
+		this.estado = estado;
+	}
+
+	public String getFecha() {
+		return fecha;
+	}
+
+	public void setFecha(String fecha) {
+		this.fecha = fecha;
+	}
+
+	public String getCedula() {
+		return cedula;
+	}
+
+	public void setCedula(String cedula) {
+		this.cedula = cedula;
+	}
+	
+	
+
+}

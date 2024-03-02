@@ -5,14 +5,11 @@ import java.util.List;
 import org.springframework.stereotype.Repository;
 
 import com.uce.edu.repository.modelo.Vehiculo;
+import com.uce.edu.repository.modelo.dto.VehiculoDTO;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.TypedQuery;
-import jakarta.persistence.criteria.CriteriaBuilder;
-import jakarta.persistence.criteria.CriteriaQuery;
-import jakarta.persistence.criteria.Predicate;
-import jakarta.persistence.criteria.Root;
 import jakarta.transaction.Transactional;
 import jakarta.transaction.Transactional.TxType;
 
@@ -34,22 +31,15 @@ public class VehiculoRepositoryImpl implements IVehiculoRepository {
 
 	@Override
 	@Transactional(value = TxType.NOT_SUPPORTED)
-	public List<Vehiculo> seleccionarPorModeloMarca(String marca, String modelo) {
+	public List<VehiculoDTO> seleccionarPorModeloMarca(String marca, String modelo) {
 		// TODO Auto-generated method stub
-		CriteriaBuilder criteriaBuilder = this.entityManager.getCriteriaBuilder();
-		CriteriaQuery<Vehiculo> criteriaQuery = criteriaBuilder.createQuery(Vehiculo.class);
 		
-		Root<Vehiculo> from = criteriaQuery.from(Vehiculo.class);
-		
-		Predicate condicionMarca = criteriaBuilder.equal(from.get("marca"), marca);
-		Predicate condicionModelo = criteriaBuilder.equal(from.get("modelo"), modelo);
-		
-		Predicate condicionFinal = criteriaBuilder.and(condicionMarca,condicionModelo);
-		
-		criteriaQuery.select(from).where(condicionFinal);
-		
-		TypedQuery<Vehiculo> query = this.entityManager.createQuery(criteriaQuery);
-		
+		TypedQuery<VehiculoDTO> query = this.entityManager.createQuery("SELECT NEW com.uce.edu.repository.modelo.dto.VehiculoDTO("
+				+ "v.placa, v.modelo, v.marca, v.anioFabricacion, v.estado, v.valorPorDia) FROM Vehiculo v "
+				+ "WHERE v.marca= :marca AND v.modelo= :modelo"
+				,VehiculoDTO.class);
+		query.setParameter("marca", marca);
+		query.setParameter("modelo", modelo);
 		return query.getResultList();
 	}
 
@@ -57,19 +47,15 @@ public class VehiculoRepositoryImpl implements IVehiculoRepository {
 	@Transactional(value = TxType.MANDATORY)
 	public void insertar(Vehiculo vehiculo) {
 		// TODO Auto-generated method stub
-
+		this.entityManager.persist(vehiculo);
 	}
 
 	@Override
+	@Transactional(value = TxType.MANDATORY)
 	public void actualizar(Vehiculo vehiculo) {
 		// TODO Auto-generated method stub
-
+		this.entityManager.merge(vehiculo);
 	}
 
-	@Override
-	public void eliminarPorPlaca(String placa) {
-		// TODO Auto-generated method stub
-
-	}
 
 }
