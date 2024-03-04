@@ -8,6 +8,11 @@ import org.springframework.stereotype.Service;
 import com.uce.edu.repository.IVehiculoRepository;
 import com.uce.edu.repository.modelo.Vehiculo;
 import com.uce.edu.repository.modelo.dto.VehiculoDTO;
+import com.uce.edu.service.TO.VehiculoTO;
+
+import jakarta.transaction.Transactional;
+import jakarta.transaction.Transactional.TxType;
+
 @Service
 public class VehiculoServiceImpl implements IVehiculoService {
 	@Autowired
@@ -26,16 +31,27 @@ public class VehiculoServiceImpl implements IVehiculoService {
 	}
 
 	@Override
-	public void guardar(Vehiculo vehiculo) {
+	@Transactional(value = TxType.REQUIRES_NEW)
+	public void guardar(VehiculoTO vehiculo) {
 		// TODO Auto-generated method stub
-		this.iVehiculoRepository.insertar(vehiculo);
+		Vehiculo vehi = new Vehiculo();
+		vehi.setAnioFabricacion(vehiculo.getAnioFabricacion());
+		vehi.setAvaluoVehiculo(vehiculo.getAvaluo());
+		vehi.setCilindraje(vehiculo.getCilindraje());
+		vehi.setEstado(vehiculo.getEstado());
+		vehi.setMarca(vehiculo.getMarca());
+		vehi.setModelo(vehiculo.getModelo());
+		vehi.setPaisFabricacion(vehiculo.getPaisFabricacion());
+		vehi.setPlaca(vehiculo.getPlaca());
+		vehi.setValorPorDia(vehiculo.getValorDiario());
+		this.iVehiculoRepository.insertar(vehi);
 	}
 
 	@Override
+	@Transactional(value = TxType.REQUIRES_NEW)
 	public void actualizar(Vehiculo vehiculo) {
 		// TODO Auto-generated method stub
 		this.iVehiculoRepository.actualizar(vehiculo);
 	}
-
 
 }

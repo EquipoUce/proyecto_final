@@ -16,7 +16,7 @@ import jakarta.transaction.Transactional.TxType;
 @Repository
 @Transactional
 public class VehiculoRepositoryImpl implements IVehiculoRepository {
-	
+
 	@PersistenceContext
 	private EntityManager entityManager;
 
@@ -24,7 +24,8 @@ public class VehiculoRepositoryImpl implements IVehiculoRepository {
 	@Transactional(value = TxType.NOT_SUPPORTED)
 	public Vehiculo seleccionarPorPlaca(String placa) {
 		// TODO Auto-generated method stub
-		TypedQuery<Vehiculo> myQuery = this.entityManager.createQuery("SELECT v FROM Vehiculo v WHERE v.placa = :placa",Vehiculo.class);
+		TypedQuery<Vehiculo> myQuery = this.entityManager.createQuery("SELECT v FROM Vehiculo v WHERE v.placa = :placa",
+				Vehiculo.class);
 		myQuery.setParameter("placa", placa);
 		return myQuery.getSingleResult();
 	}
@@ -33,11 +34,11 @@ public class VehiculoRepositoryImpl implements IVehiculoRepository {
 	@Transactional(value = TxType.NOT_SUPPORTED)
 	public List<VehiculoDTO> seleccionarPorModeloMarca(String marca, String modelo) {
 		// TODO Auto-generated method stub
-		
-		TypedQuery<VehiculoDTO> query = this.entityManager.createQuery("SELECT NEW com.uce.edu.repository.modelo.dto.VehiculoDTO("
-				+ "v.placa, v.modelo, v.marca, v.anioFabricacion, v.estado, v.valorPorDia) FROM Vehiculo v "
-				+ "WHERE v.marca= :marca AND v.modelo= :modelo"
-				,VehiculoDTO.class);
+
+		TypedQuery<VehiculoDTO> query = this.entityManager
+				.createQuery("SELECT NEW com.uce.edu.repository.modelo.dto.VehiculoDTO("
+						+ "v.placa, v.modelo, v.marca, v.anioFabricacion, v.estado, v.valorPorDia) FROM Vehiculo v "
+						+ "WHERE v.marca= :marca AND v.modelo= :modelo", VehiculoDTO.class);
 		query.setParameter("marca", marca);
 		query.setParameter("modelo", modelo);
 		return query.getResultList();
@@ -56,6 +57,5 @@ public class VehiculoRepositoryImpl implements IVehiculoRepository {
 		// TODO Auto-generated method stub
 		this.entityManager.merge(vehiculo);
 	}
-
 
 }

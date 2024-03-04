@@ -49,7 +49,7 @@ public class Vehiculo {
 	@Column(name = "vehi_estado")
 	private String estado;
 	
-	@OneToMany(mappedBy = "vehiculo", fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "vehiculo")
 	private List<Reserva> reservas;
 
 	//Setter and Getter

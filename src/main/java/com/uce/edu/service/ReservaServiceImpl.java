@@ -9,18 +9,24 @@ import org.springframework.stereotype.Service;
 import com.uce.edu.repository.IReservaRepository;
 import com.uce.edu.repository.modelo.Reserva;
 import com.uce.edu.repository.modelo.dto.ReservaDTO;
+
+import jakarta.transaction.Transactional;
+import jakarta.transaction.Transactional.TxType;
+
 @Service
 public class ReservaServiceImpl implements IReservaService {
 	@Autowired
 	private IReservaRepository iReservaRepository;
 
 	@Override
+	@Transactional(value = TxType.REQUIRES_NEW)
 	public void guardar(Reserva reserva) {
 		// TODO Auto-generated method stub
 		this.iReservaRepository.insertar(reserva);
 	}
 
 	@Override
+	@Transactional(value = TxType.REQUIRES_NEW)
 	public void actualizar(Reserva reserva) {
 		// TODO Auto-generated method stub
 		this.iReservaRepository.actualizar(reserva);
@@ -37,6 +43,5 @@ public class ReservaServiceImpl implements IReservaService {
 		// TODO Auto-generated method stub
 		return this.iReservaRepository.seleccionarPorRangoFecha(fechaInicio, fechaFin);
 	}
-	
 
 }

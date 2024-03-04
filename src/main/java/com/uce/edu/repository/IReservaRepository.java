@@ -7,9 +7,17 @@ import com.uce.edu.repository.modelo.Reserva;
 import com.uce.edu.repository.modelo.dto.ReservaDTO;
 
 public interface IReservaRepository {
-	public Reserva seleccionarPorNumeroReserva (String numeroReserva);
-	public List<ReservaDTO> seleccionarPorRangoFecha (LocalDateTime fechaInicio,LocalDateTime fechaFin);
-	public void insertar (Reserva reserva);
-	public void actualizar (Reserva reserva);
+	public Reserva seleccionarPorNumeroReserva(String numeroReserva);
+
+	public List<ReservaDTO> seleccionarPorRangoFecha(LocalDateTime fechaInicio, LocalDateTime fechaFin);
+
+	public void insertar(Reserva reserva);
+
+	public void actualizar(Reserva reserva);
+
+	public List<Reserva> seleccionarPorRango(LocalDateTime fechaInicio, LocalDateTime fechaFin);
+
+	public List<Reserva> seleccionarTodos();
+
 
 }

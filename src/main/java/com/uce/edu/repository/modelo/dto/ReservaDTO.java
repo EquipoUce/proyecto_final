@@ -39,6 +39,15 @@ public class ReservaDTO {
 		this.fechaFin = fechaFin;
 		this.estado = estado;
 	}
+	
+	
+
+	@Override
+	public String toString() {
+		return "ReservaDTO [cedula=" + cedula + ", nombre=" + nombre + ", apellido=" + apellido + ", placa=" + placa
+				+ ", marca=" + marca + ", valorTotalAPagar=" + valorTotalAPagar + ", numeroReserva=" + numeroReserva
+				+ ", fechaInicio=" + fechaInicio + ", fechaFin=" + fechaFin + ", estado=" + estado + "]";
+	}
 
 	//Setter and Getter
 	public String getCedulaCliente() {

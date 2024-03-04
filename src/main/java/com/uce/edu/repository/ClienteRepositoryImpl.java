@@ -13,7 +13,7 @@ import jakarta.transaction.Transactional.TxType;
 @Repository
 @Transactional
 public class ClienteRepositoryImpl implements IClienteRepository {
-	
+
 	@PersistenceContext
 	private EntityManager entityManager;
 
@@ -21,7 +21,8 @@ public class ClienteRepositoryImpl implements IClienteRepository {
 	@Transactional(value = TxType.NOT_SUPPORTED)
 	public Cliente seleccionarPorCedula(String cedula) {
 		// TODO Auto-generated method stub
-		TypedQuery<Cliente> myQuery = this.entityManager.createQuery("SELECT c FROM Cliente c WHERE c.cedula = :cedula",Cliente.class);
+		TypedQuery<Cliente> myQuery = this.entityManager.createQuery("SELECT c FROM Cliente c WHERE c.cedula =:cedula",
+				Cliente.class);
 		myQuery.setParameter("cedula", cedula);
 		return myQuery.getSingleResult();
 	}
@@ -32,6 +33,5 @@ public class ClienteRepositoryImpl implements IClienteRepository {
 		// TODO Auto-generated method stub
 		this.entityManager.persist(cliente);
 	}
-
 
 }

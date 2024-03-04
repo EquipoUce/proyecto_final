@@ -14,44 +14,44 @@ import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name= "reserva")
+@Table(name = "reserva")
 public class Reserva {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_reserva")
 	@SequenceGenerator(name = "seq_reserva", sequenceName = "seq_reserva", allocationSize = 1)
-	@Column(name="rese_id")
+	@Column(name = "rese_id")
 	private Integer id;
-	
-	@Column(name="rese_numero_reserva")
-	private String numeroReserva;
-	
-	@Column(name="rese_fecha_inicio")
+
+	@Column(name = "rese_numero_reserva")
+	private String numero;
+
+	@Column(name = "rese_fecha_inicio")
 	private LocalDateTime fechaInicio;
-	
-	@Column(name="rese_fecha_fin")
+
+	@Column(name = "rese_fecha_fin")
 	private LocalDateTime fechaFin;
-	
-	@Column(name="rese_estado")
+
+	@Column(name = "rese_estado")
 	private String estado;
-	
-	@Column(name="rese_valor_sub_total")
+
+	@Column(name = "rese_valor_sub_total")
 	private BigDecimal valorSubTotal;
-	
-	@Column(name="rese_valor_ice")
+
+	@Column(name = "rese_valor_ice")
 	private BigDecimal valorICE;
-	
-	@Column(name="rese_valor_total_a_pagar")
+
+	@Column(name = "rese_valor_total_a_pagar")
 	private BigDecimal valorTotalAPagar;
-	
+
 	@ManyToOne
-	@JoinColumn (name = "rese_id_vehiculo")
+	@JoinColumn(name = "rese_id_vehiculo")
 	private Vehiculo vehiculo;
-	
+
 	@ManyToOne
-	@JoinColumn (name = "rese_id_cliente")
+	@JoinColumn(name = "rese_id_cliente")
 	private Cliente cliente;
 
-	//Setter and Getter
+	// Setter and Getter
 	public Integer getId() {
 		return id;
 	}
@@ -61,11 +61,11 @@ public class Reserva {
 	}
 
 	public String getNumeroReserva() {
-		return numeroReserva;
+		return numero;
 	}
 
 	public void setNumeroReserva(String numeroReserva) {
-		this.numeroReserva = numeroReserva;
+		this.numero = numeroReserva;
 	}
 
 	public LocalDateTime getFechaInicio() {
@@ -131,6 +131,5 @@ public class Reserva {
 	public void setValorTotalAPagar(BigDecimal valorTotalAPagar) {
 		this.valorTotalAPagar = valorTotalAPagar;
 	}
-
 
 }
