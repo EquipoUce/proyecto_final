@@ -15,31 +15,26 @@
 	<body style="background: url(/imagenes/pexels-photo-2715004.jpeg) center / cover"></body>
 	<main class="flex-container">
 		<section class="image-section"><!-- llamamos a nuestro estilo -->
-			<img src="imagenes/Budget-Rent-a-Car-Logo-1993.png" alt="Logo de la empresa">
+			<img src="/imagenes/Budget-Rent-a-Car-Logo-1993.png" alt="Logo de la empresa">
 		</section>
 		<section class="container">
 			<h1>Bienvenido a Budget Rent A Car</h1>
 			<section class="container_glass ">
-				<form th:action="@{/menus/mostrarMenuCliente}" th:method="GET">
+				<form th:action="@{/menuPrincipal/mostrarMenuCliente}" th:method="GET">
 					<div class="inputBox">
 						<input type="submit" value="Clientes">
 					</div>
 				</form>
-
-				</form>
-				<form>
+				<form th:action="@{/menuPrincipal/mostrarMenuEmpleado}" th:method="GET">
 					<div class="inputBox">
 						<input type="submit" value="Empleados">
 					</div>
 				</form>
-				</form>
-				<form>
+				<form th:action="@{/menuPrincipal/mostrarVistaReservasPorFechas}" th:method="GET">
 					<div class="inputBox">
 						<input type="submit" value="Reservas">
 					</div>
 				</form>
-				</form>
-
 			</section>
 
 		</section>

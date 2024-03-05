@@ -1,0 +1,32 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+@media print {
+ .formulario , .inputbox {
+  overflow: visible;
+  height: auto !important;
+  width: auto !important;
+ }
+}
+body {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center; /* Centra verticalmente */
+    align-items: center;     /* Centra horizontalmente */
+    margin: 0;               /* Elimina el margen predeterminado del body */
+}
+
+
+.back-button { /*Boton de regreso*/
+    position: fixed;
+    bottom: 20px;
+    right: 10px;
+    padding: 10px;
+    background-color: rgba(255, 255, 255, 0.8); /* Fondo semi-transparente */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}

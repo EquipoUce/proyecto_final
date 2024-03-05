@@ -1,0 +1,84 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@600&style=italic&display=swap');
+* {
+    margin: 0;
+    padding: 0;
+
+    box-sizing: border-box;
+    font-family: 'Noto Serif', sans-serif;
+}
+@media print {
+ .table, .table__body {
+  overflow: visible;
+  height: auto !important;
+  width: auto !important;
+ }
+}
+
+body {
+    min-height: 100vh;
+    background: url(imagenes/formularioCarro.jpg) center / cover;  /*Fondo*/
+    display: flex;
+    justify-content: center; /* Centra verticalmente */
+    align-items: center;     /* Centra horizontalmente */
+    margin: 0;               /* Elimina el margen predeterminado del body */
+}
+
+
+.table__header { /*Cuadrado de cristal donde se encuentra el titulo de la tabla */
+    width: 100%;
+    height: 15%;
+    background-color: rgba(255, 255, 255, 0.115);
+    padding: .3rem 1rem;
+    display: flex;
+    justify-content: space-between; /* Centrar horizontalmente */
+    align-items: center;
+}
+
+.table__header h1 {
+    margin: 0; 
+    font-size: 30px;
+    color: rgb(0, 0, 0);/* Elimina el margen predeterminado del h1 */
+}
+
+main.table {  /*Cuadrado de cristal donde se encuentra la tabla */
+    width: 82vw;
+    height: 65vh;
+    background-color: #fff5;
+    backdrop-filter: blur(7px); 
+    box-shadow: 0 .4rem .8rem #0005; /*sombra*/
+    border-radius: .8rem; /*bordes*/
+    overflow: hidden; /*acomodar la tabla*/
+}
+
+
+.table__body {
+    width: 95%;
+    max-height: calc(85% - 1.6rem);
+    background-color: rgba(255, 255, 255, 0.536); /*Color de fondo de la tabla*/
+
+    margin: .8rem auto;
+    border-radius: .6rem;
+
+    overflow: auto;
+    overflow: overlay;
+}
+
+.table__body::-webkit-scrollbar{ /*Para ajustar la barra de navegacion horizontal*/
+    width: 0.5rem;
+    height: 0.5rem;
+}
+
+.table__body::-webkit-scrollbar-thumb{
+    border-radius: .5rem;
+    background-color: #0004;
+    visibility: hidden;
+}
+
+.table__body:hover::-webkit-scrollbar-thumb{ 
+    visibility: visible;
+}
+
+table {
+    width: 100%;
+}
+
