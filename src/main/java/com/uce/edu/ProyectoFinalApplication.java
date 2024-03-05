@@ -43,11 +43,10 @@ public class ProyectoFinalApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		// TODO Auto-generated method stub
-		List<ReservaDTO> prueba = this.reservaService.reportarPorRangoFecha(LocalDateTime.of(2024, 3, 1, 10, 0),
-				LocalDateTime.of(2024, 3, 5, 18, 0));
-		List<VehiculoDTO> pru2 = this.iVehiculoService.buscarPorModeloMarca("carro", "carroo");
-		// reservarVehiculo(String placa, String cedula, LocalDateTime fechaInicio,
-		// LocalDateTime fechaFin) {
+		//List<ReservaDTO> prueba = this.reservaService.reportarPorRangoFecha(LocalDateTime.of(2024, 3, 1, 10, 0),
+				//LocalDateTime.of(2024, 3, 5, 18, 0));
+		//List<VehiculoDTO> pru2 = this.iVehiculoService.buscarPorModeloMarca("carro", "carroo");
+		
 
 		ClienteTO cliente = new ClienteTO();
 		cliente.setCedula("101010");
@@ -77,20 +76,10 @@ public class ProyectoFinalApplication implements CommandLineRunner {
 		reserva.setValorICE(BigDecimal.valueOf(20.00));
 		reserva.setValorTotalAPagar(BigDecimal.valueOf(220.00));
 
-		// Asociar Cliente y Vehiculo a la Reserva
-//		reserva.setCliente(clie);
-		//
-//		reserva.setVehiculo(vehi); // Asociar la Reserva al Cliente
-//		List<Reserva> reservasCliente = new ArrayList<>();
-//		reservasCliente.add(reserva);
-//		clie.setReservas(reservasCliente); // Asociar la Reserva al Vehiculo
-//		List<Reserva> reservasVehiculo = new ArrayList<>();
-//		reservasVehiculo.add(reserva);
-//		vehi.setReservas(reservasVehiculo);
-//		this.clienteService.guardar(cliente);
-//		this.iVehiculoService.guardar(vehiculo);
 
-//		this.reservaService.guardar(reserva);
+		//this.clienteService.guardar(cliente);
+		//this.iVehiculoService.guardar(vehiculo);
+
 
 		ReservaVehiculoTO re = new ReservaVehiculoTO();
 		re.setCedulaCliente("101010");
@@ -98,10 +87,10 @@ public class ProyectoFinalApplication implements CommandLineRunner {
 		re.setFechaFin(LocalDateTime.of(2024, 3, 10, 0, 0));
 		re.setNumeroTarjeta("1212");
 		re.setPlaca("ABC456");
-//		this.clienteService.reservarVehiculo(re);
+		//this.clienteService.reservarVehiculo(re);
 
-		this.iVehiculoService.buscarPorModeloMarca("Toyota", "Sedan");
-		this.iVehiculoService.buscarPorPlaca("ABC456");
+		//this.iVehiculoService.buscarPorModeloMarca("Toyota", "Sedan");
+		//this.iVehiculoService.buscarPorPlaca("ABC456");
 
 		this.reservaService.reportarPorRangoFecha(LocalDateTime.of(2024, 3, 8, 0, 0),
 				LocalDateTime.of(2024, 3, 10, 0, 0));
