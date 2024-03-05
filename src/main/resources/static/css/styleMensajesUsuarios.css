@@ -1,0 +1,67 @@
+body {
+    min-height: 100vh;
+    background: url(/imagenes/pexels-matt-hardy-2453108.jpg) center / cover;
+    background-position: top;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+}
+
+.flex-container {
+    display: flex;
+    flex-direction: row; /* Cambiado a fila para colocar la imagen y el párrafo lado a lado */
+    justify-content: center;
+    align-items: center;
+}
+
+.image-section {
+    text-align: center;
+    margin-right: 200px; /* Agregado margen para separar la imagen del párrafo */
+}
+
+img {
+    max-width: 100%; /* Cambiado al 100% para que la imagen sea responsiva */
+    height: auto;
+}
+
+.container_glass {
+    width: 60%;
+    max-width: 400px;
+    background-color: rgba(0, 2, 4, 0.141);
+    backdrop-filter: blur(7px);
+    box-shadow: 0 .4rem .8rem rgba(17, 17, 17, 0.536);
+    overflow: hidden;
+    padding: 45px;
+    height: 45vh;
+    margin-bottom: 30px;
+}
+
+.container_glass p {
+    color: rgb(0, 0, 0);
+    font-size: 18px;
+    margin: 0;
+    margin-bottom: 20px;
+}
+
+.container_glass .inputBoxError input[type="submit"] {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.585);
+    color: rgb(15, 13, 13);
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+    border: none;
+    outline: none;
+    padding: 10px 15px;
+    border-radius: 10px;
+    font-size: 15px;
+    margin-bottom: 5px;
+    font-weight: bold; 
+}
+
+.container_glass .inputBoxError input[type="submit"]:hover {
+    background-color: rgba(103, 2, 2, 0.816);
+    color: #fff;
+    font-weight: bold;
+}

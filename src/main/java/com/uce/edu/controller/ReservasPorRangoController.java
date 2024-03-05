@@ -34,7 +34,7 @@ public class ReservasPorRangoController {
         model.addAttribute("reservas", reservas);
 
         // Retornamos la vista que mostrará las reservas encontradas
-        return "vistaBuscarReserva5";
+        return "vistaBuscarReserva18";
     }
 
 }

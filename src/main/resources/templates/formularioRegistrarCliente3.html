@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Formulario Registro Cliente</title>
+	<link rel="stylesheet" href="/css/styleFormularios.css">
+	<link rel="stylesheet" href="/css/styleBotonRegreso.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+</head>
+<body>
+	<body style="background: url(/imagenes/nuevocliente.jpg) center / cover"></body>
+	<form th:action="@{/menuClientes/registrarCliente}" th:object="${clienteTO}" th:method="POST">
+		<main class="formulario"> 
+			<section class="formulario__header"><!-- llamamos a nuestro estilo -->
+				<h1>Datos del Cliente</h1>
+			</section>
+			<section class="inputForm"> <!-- llamamos a nuestro estilo -->
+				<section class="inputForm"> <!-- llamamos a nuestro estilo -->
+					<div class="inputBox">
+						<input type="text" th:field="${clienteTO.cedula}" placeholder="Cedula">
+					</div>
+					<div class="inputBox">
+						<input type="text" th:field="${clienteTO.nombre}" placeholder="Nombre" >
+					</div>
+					<div class="inputBox">
+						<input type="text" th:field="${clienteTO.apellido}" placeholder="Apellido" >
+					</div>
+                    <div class="inputBox">
+						<label for="exampleInputEmail1">Fecha de nacimiento</label>
+						<input type="datetime-local" th:field="${clienteTO.fechaNacimiento}" placeholder="Fecha de nacimiento" >
+					</div>
+					<div class="inputBox">
+						<input type="text" th:field="${clienteTO.genero}" placeholder="Genero" >
+					</div>
+		<!--Boton para disparar la accion -->
+		<div class="inputBox">
+			<input type="submit" value="Registrarse">
+		</div>
+		</section>
+	</form>
+</main>
+     
+<button class="btn btn-outline-light back-button" onclick="window.history.back()">Regresar</button>
+
+</body>
+
+</html>

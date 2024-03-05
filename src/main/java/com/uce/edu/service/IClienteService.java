@@ -14,6 +14,6 @@ public interface IClienteService {
 
 	public List<VehiculoDTO> buscarPorModeloMarca(String marca, String modelo);
 
-	public boolean reservarVehiculo(ReservaVehiculoTO reserva);
+	public String reservarVehiculo(ReservaVehiculoTO reserva);
 
 }

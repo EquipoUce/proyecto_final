@@ -54,7 +54,7 @@ public class ClienteServiceImpl implements IClienteService {
 
 	@Override
 	@Transactional(value = TxType.REQUIRES_NEW)
-	public boolean reservarVehiculo(ReservaVehiculoTO reservaV) {
+	public String reservarVehiculo(ReservaVehiculoTO reservaV) {
 		String cedula = reservaV.getCedulaCliente();
 		String placa = reservaV.getPlaca();
 		LocalDateTime fechaInicio = reservaV.getFechaInicio();
@@ -94,14 +94,14 @@ public class ClienteServiceImpl implements IClienteService {
 						rese.setVehiculo(vehi);
 						rese.setNumeroReserva("R-" + (listaR.size() + 1));
 						this.reservaRepository.insertar(rese);
-						return true;
+						return rese.getNumeroReserva();
 
 					} else {
 						// indisponible en esas fechas
 						System.out.println("No existe disponibilidad en ese rango de fechas");
 						System.out.println("Disponible desdues de la fecha: " + reseC.getFechaFin());
 						System.out.println("Disponible antes de la fecha: " + reseC.getFechaInicio());
-						return false;
+						return null;
 
 					}
 				} else {
@@ -118,17 +118,17 @@ public class ClienteServiceImpl implements IClienteService {
 					rese.setVehiculo(vehi);
 					rese.setNumeroReserva("R-" + listaR.size());
 					this.reservaRepository.insertar(rese);
-					return true;
+					return rese.getNumeroReserva();
 
 				}
 			} else {
 				System.out.println("Error tarjeta NULL");
-				return false;
+				return null;
 			}
 		} catch (Exception e) {
 			// TODO: handle exception
 			System.out.println(e.toString());
-			return false;
+			return null;
 		}
 	}
 

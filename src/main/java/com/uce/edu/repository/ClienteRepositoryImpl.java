@@ -5,6 +5,7 @@ import org.springframework.stereotype.Repository;
 import com.uce.edu.repository.modelo.Cliente;
 
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.NoResultException;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.TypedQuery;
 import jakarta.transaction.Transactional;
@@ -21,10 +22,15 @@ public class ClienteRepositoryImpl implements IClienteRepository {
 	@Transactional(value = TxType.NOT_SUPPORTED)
 	public Cliente seleccionarPorCedula(String cedula) {
 		// TODO Auto-generated method stub
-		TypedQuery<Cliente> myQuery = this.entityManager.createQuery("SELECT c FROM Cliente c WHERE c.cedula =:cedula",
-				Cliente.class);
-		myQuery.setParameter("cedula", cedula);
-		return myQuery.getSingleResult();
+		try {
+			TypedQuery<Cliente> myQuery = this.entityManager.createQuery(
+					"SELECT c FROM Cliente c WHERE c.cedula =:cedula",
+					Cliente.class);
+			myQuery.setParameter("cedula", cedula);
+			return myQuery.getSingleResult();
+		} catch (NoResultException e) {
+			return null;
+		}
 	}
 
 	@Override
