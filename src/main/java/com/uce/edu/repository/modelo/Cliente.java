@@ -40,8 +40,7 @@ public class Cliente {
 	@Column(name = "clie_registro")
 	private String registro;
 
-	@Transient
-	private String numTarjetaCredito;
+	
 
 	@OneToMany(mappedBy = "cliente")
 	private List<Reserva> reservas;
@@ -103,13 +102,6 @@ public class Cliente {
 		this.registro = registro;
 	}
 
-	public String getNumTarjetaCredito() {
-		return numTarjetaCredito;
-	}
-
-	public void setNumTarjetaCredito(String numTarjetaCredito) {
-		this.numTarjetaCredito = numTarjetaCredito;
-	}
 
 	public List<Reserva> getReservas() {
 		return reservas;

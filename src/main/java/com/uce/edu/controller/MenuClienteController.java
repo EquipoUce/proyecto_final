@@ -1,5 +1,6 @@
 package com.uce.edu.controller;
 
+import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,10 +14,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.uce.edu.repository.modelo.Cliente;
 import com.uce.edu.repository.modelo.dto.VehiculoDTO;
+import com.uce.edu.service.EmpleadoService;
 import com.uce.edu.service.IClienteService;
 import com.uce.edu.service.TO.ClienteTO;
 import com.uce.edu.service.TO.ReservaVehiculoTO;
 import com.uce.edu.service.TO.VehiculoTO;
+
+import java.util.function.Predicate;
 
 @Controller
 @RequestMapping("/menuClientes")
@@ -26,6 +30,9 @@ public class MenuClienteController {
 	 @Autowired
 	 private IClienteService iClienteService;
 
+	 @Autowired
+	 private EmpleadoService empleadoService;
+	 
 	 //--> http://localhost:8080/menuClientes/mostrarMenuCliente
     @GetMapping("/mostrarMenuCliente")
 	public String mostrarMenuCliente() {
@@ -59,9 +66,23 @@ public class MenuClienteController {
     @PostMapping("/registrarCliente")
     public String registrarCliente(@ModelAttribute("clienteTO") ClienteTO clienteTO, Model model) {
         // Aquí debes llamar al servicio para registrar el cliente usando los datos en clienteTO
-        iClienteService.guardar(clienteTO);
-        // Después de registrar, redirige según la lógica
-        return "redirect:/menuClientes/mostrarMenuCliente";
+    	List<String> listaClienteBooleana = Arrays.asList("C", "Cliente", "Clie", "Cl", "cliente","c");
+    	List<String> listaEmpleadoBooleana = Arrays.asList("E", "empleado", "Empleado", "Em", "e");
+    	
+    	Predicate<String> perteneceAListaCliente = s -> listaClienteBooleana.contains(s);
+    	Predicate<String> perteneceAListaEmpleado = s -> listaEmpleadoBooleana.contains(s);
+    	
+    	if(perteneceAListaCliente.test(clienteTO.getRegistro())) {
+    		iClienteService.guardar(clienteTO);
+    		return "redirect:/menuClientes/mostrarMenuCliente";
+    	}
+        else if (perteneceAListaEmpleado.test(clienteTO.getRegistro())) {
+			empleadoService.guardarCliente(clienteTO);
+			return "redirect:/menuPrincipal/mostrarMenuEmpleado";
+		}
+    	else {
+			return "redirect:/menuClientes/mostrarFormularioRegistrarClienteDesdeError";
+		}
     }
     
     @GetMapping("/mostrarFormularioBuscarVehiculo")
@@ -88,6 +109,8 @@ public class MenuClienteController {
     @PostMapping("/ReservarVehiculo")
     public String ReservarVehiculo(@ModelAttribute("ReservaVehiculoTO") ReservaVehiculoTO reservaVehiculoTO, Model model) {
         String numeroReserva = iClienteService.reservarVehiculo(reservaVehiculoTO);
+        //No existe disponibilidad en ese rango de fechas//
+        
         if(numeroReserva!=null) {
         	model.addAttribute("mensajeExito", "La reserva se ha realizado con éxito. Número de reserva: " + numeroReserva);
         	return "mensajeTransaccionExitosa";

@@ -8,6 +8,7 @@ import com.uce.edu.repository.modelo.Vehiculo;
 import com.uce.edu.repository.modelo.dto.VehiculoDTO;
 
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.NoResultException;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.TypedQuery;
 import jakarta.transaction.Transactional;
@@ -24,10 +25,14 @@ public class VehiculoRepositoryImpl implements IVehiculoRepository {
 	@Transactional(value = TxType.NOT_SUPPORTED)
 	public Vehiculo seleccionarPorPlaca(String placa) {
 		// TODO Auto-generated method stub
-		TypedQuery<Vehiculo> myQuery = this.entityManager.createQuery("SELECT v FROM Vehiculo v WHERE v.placa = :placa",
-				Vehiculo.class);
-		myQuery.setParameter("placa", placa);
-		return myQuery.getSingleResult();
+		try {
+			TypedQuery<Vehiculo> myQuery = this.entityManager
+					.createQuery("SELECT v FROM Vehiculo v WHERE v.placa = :placa", Vehiculo.class);
+			myQuery.setParameter("placa", placa);
+			return myQuery.getSingleResult();
+		} catch (NoResultException e) {
+			return null;
+		}
 	}
 
 	@Override

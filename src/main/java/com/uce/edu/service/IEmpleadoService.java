@@ -4,6 +4,7 @@ import com.uce.edu.repository.modelo.Cliente;
 import com.uce.edu.repository.modelo.Vehiculo;
 import com.uce.edu.repository.modelo.dto.ReservaEmpleadoDTO;
 import com.uce.edu.service.TO.ClienteTO;
+import com.uce.edu.service.TO.ReservaEmpleadoTO;
 import com.uce.edu.service.TO.VehiculoTO;
 
 public interface IEmpleadoService {
@@ -15,6 +16,13 @@ public interface IEmpleadoService {
 
 	public Vehiculo buscarPorPlaca(String placa);
 
-	public ReservaEmpleadoDTO retirarReservado(String numeroReserva);
+	public ReservaEmpleadoDTO generarRservaEmpleadoDTO(String numeroReserva);
+
+	public void ejecutarReserva(ReservaEmpleadoDTO reservaEmpleadoDTO);
+	
+	public ReservaEmpleadoTO generarRservaEmpleadoTO(String numeroReserva);
+
+	public void ejecutarReserva(ReservaEmpleadoTO reservaEmpleadoTO);
+
 
 }

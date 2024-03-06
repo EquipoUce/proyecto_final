@@ -6,18 +6,20 @@ public class ReservaEmpleadoTO {
 	private String estado;
 	private String fecha; //UNIR ANTES DE CREAR EL OBJETO
 	private String cedula;
+	private String numeroReserva;
 
 	public ReservaEmpleadoTO() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public ReservaEmpleadoTO(String placa, String modelo, String estado, String fecha, String cedula) {
+	public ReservaEmpleadoTO(String placa, String modelo, String estado, String fecha, String cedula, String numeroReserva) {
 		super();
 		this.placa = placa;
 		this.modelo = modelo;
 		this.estado = estado;
 		this.fecha = fecha;
 		this.cedula = cedula;
+		this.numeroReserva = numeroReserva;
 	}
 
 	public String getPlaca() {
@@ -58,6 +60,14 @@ public class ReservaEmpleadoTO {
 
 	public void setCedula(String cedula) {
 		this.cedula = cedula;
+	}
+
+	public String getNumeroReserva() {
+		return numeroReserva;
+	}
+
+	public void setNumeroReserva(String numeroReserva) {
+		this.numeroReserva = numeroReserva;
 	}
 	
 	

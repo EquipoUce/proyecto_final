@@ -11,6 +11,7 @@ import com.uce.edu.repository.modelo.Reserva;
 import com.uce.edu.repository.modelo.Vehiculo;
 import com.uce.edu.repository.modelo.dto.ReservaEmpleadoDTO;
 import com.uce.edu.service.TO.ClienteTO;
+import com.uce.edu.service.TO.ReservaEmpleadoTO;
 import com.uce.edu.service.TO.VehiculoTO;
 
 import jakarta.transaction.Transactional;
@@ -74,28 +75,73 @@ public class EmpleadoService implements IEmpleadoService {
 
 	@Override
 	@Transactional(value = TxType.REQUIRES_NEW)
-	public ReservaEmpleadoDTO retirarReservado(String numeroReserva) {
+	public ReservaEmpleadoDTO generarRservaEmpleadoDTO(String numeroReserva) {
 		// TODO Auto-generated method stub
 		Reserva res = this.reservaRepository.seleccionarPorNumeroReserva(numeroReserva);
-		Vehiculo vehi = this.vehiculoRepository.seleccionarPorPlaca(res.getVehiculo().getPlaca());
 
-		String fechaCadena = " ";
-		fechaCadena.concat(res.getFechaInicio().toString()).concat("-").concat(res.getFechaFin().toString());
-
-		ReservaEmpleadoDTO reseDTO = new ReservaEmpleadoDTO();
-		reseDTO.setCedula(res.getCliente().getCedula());
-		reseDTO.setEstado("Ejecutada");
-		reseDTO.setFecha(fechaCadena);
-		reseDTO.setModelo(res.getVehiculo().getModelo());
-		reseDTO.setNumeroReserva(numeroReserva);
-		reseDTO.setEstadoVehiculo("Indisponible");
-
-		vehi.setEstado("Indisponible");
-		res.setEstado("Ejecutada");
-		this.vehiculoRepository.actualizar(vehi);
-		this.reservaRepository.actualizar(res);
-		return reseDTO;
-
+		if (res != null) {
+			String fechaCadena = " ";
+			fechaCadena.concat(res.getFechaInicio().toString()).concat("-").concat(res.getFechaFin().toString());
+			ReservaEmpleadoDTO reseDTO = new ReservaEmpleadoDTO();
+			reseDTO.setPlaca(res.getVehiculo().getPlaca());
+			reseDTO.setCedula(res.getCliente().getCedula());
+			reseDTO.setEstado(res.getEstado());
+			reseDTO.setFecha(fechaCadena);
+			reseDTO.setModelo(res.getVehiculo().getModelo());
+			reseDTO.setNumeroReserva(numeroReserva);
+			reseDTO.setEstadoVehiculo(res.getVehiculo().getEstado());
+			return reseDTO;
+		} else {
+			return null;
+		}
 	}
 
+	@Override
+	@Transactional(value = TxType.REQUIRES_NEW)
+	public void ejecutarReserva(ReservaEmpleadoDTO reservaEmpleadoDTO) {
+		// TODO Auto-generated method stub
+		Reserva res = this.reservaRepository.seleccionarPorNumeroReserva(reservaEmpleadoDTO.getNumeroReserva());
+		Vehiculo vehi = this.vehiculoRepository.seleccionarPorPlaca(reservaEmpleadoDTO.getPlaca());
+		res.setEstado("Ejecutada");
+		vehi.setEstado("Indisponible");
+		this.vehiculoRepository.actualizar(vehi);
+		this.reservaRepository.actualizar(res);
+	}
+	
+	
+
+	@Override
+	@Transactional(value = TxType.REQUIRES_NEW)
+	public ReservaEmpleadoTO generarRservaEmpleadoTO(String numeroReserva) {
+		// TODO Auto-generated method stub
+		Reserva res = this.reservaRepository.seleccionarPorNumeroReserva(numeroReserva);
+
+		if (res != null) {
+			String fechaCadena = " ";
+			fechaCadena.concat(res.getFechaInicio().toString()).concat("-").concat(res.getFechaFin().toString());
+			ReservaEmpleadoTO reseDTO = new ReservaEmpleadoTO();
+			reseDTO.setPlaca(res.getVehiculo().getPlaca());
+			reseDTO.setModelo(res.getVehiculo().getModelo());
+			reseDTO.setEstado(res.getEstado());
+			reseDTO.setFecha(fechaCadena);
+			reseDTO.setCedula(res.getCliente().getCedula());
+			reseDTO.setNumeroReserva(numeroReserva);
+		
+			return reseDTO;
+		} else {
+			return null;
+		}
+	}
+
+	@Override
+	@Transactional(value = TxType.REQUIRES_NEW)
+	public void ejecutarReserva(ReservaEmpleadoTO reservaEmpleadoTO) {
+		// TODO Auto-generated method stub
+		Reserva res = this.reservaRepository.seleccionarPorNumeroReserva(reservaEmpleadoTO.getNumeroReserva());
+		Vehiculo vehi = this.vehiculoRepository.seleccionarPorPlaca(reservaEmpleadoTO.getPlaca());
+		res.setEstado("Ejecutada");
+		vehi.setEstado("Indisponible");
+		this.vehiculoRepository.actualizar(vehi);
+		this.reservaRepository.actualizar(res);
+	}
 }

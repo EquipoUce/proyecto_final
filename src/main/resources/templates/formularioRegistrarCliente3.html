@@ -7,43 +7,49 @@
 	<title>Formulario Registro Cliente</title>
 	<link rel="stylesheet" href="/css/styleFormularios.css">
 	<link rel="stylesheet" href="/css/styleBotonRegreso.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+	<link rel="icon" href="/imagenes/Budget-Rent-a-Car-Logo-1993.png">
 </head>
+
 <body>
+
 	<body style="background: url(/imagenes/nuevocliente.jpg) center / cover"></body>
 	<form th:action="@{/menuClientes/registrarCliente}" th:object="${clienteTO}" th:method="POST">
-		<main class="formulario"> 
-			<section class="formulario__header"><!-- llamamos a nuestro estilo -->
+		<main class="formulario">
+			<section class="formulario__header">
 				<h1>Datos del Cliente</h1>
 			</section>
-			<section class="inputForm"> <!-- llamamos a nuestro estilo -->
-				<section class="inputForm"> <!-- llamamos a nuestro estilo -->
+			<section class="inputForm">
+				<section class="inputForm">
 					<div class="inputBox">
 						<input type="text" th:field="${clienteTO.cedula}" placeholder="Cedula">
 					</div>
 					<div class="inputBox">
-						<input type="text" th:field="${clienteTO.nombre}" placeholder="Nombre" >
+						<input type="text" th:field="${clienteTO.nombre}" placeholder="Nombre">
 					</div>
 					<div class="inputBox">
-						<input type="text" th:field="${clienteTO.apellido}" placeholder="Apellido" >
+						<input type="text" th:field="${clienteTO.apellido}" placeholder="Apellido">
 					</div>
-                    <div class="inputBox">
+					<div class="inputBox">
 						<label for="exampleInputEmail1">Fecha de nacimiento</label>
-						<input type="datetime-local" th:field="${clienteTO.fechaNacimiento}" placeholder="Fecha de nacimiento" >
+						<input type="datetime-local" th:field="${clienteTO.fechaNacimiento}"
+							placeholder="Fecha de nacimiento">
 					</div>
 					<div class="inputBox">
-						<input type="text" th:field="${clienteTO.genero}" placeholder="Genero" >
+						<input type="text" th:field="${clienteTO.genero}" placeholder="Genero">
 					</div>
-		<!--Boton para disparar la accion -->
-		<div class="inputBox">
-			<input type="submit" value="Registrarse">
-		</div>
-		</section>
+					<div class="inputBox">
+						<input type="text" th:field="${clienteTO.registro}" placeholder="¿Quien Regristra?">
+					</div>
+					<div class="inputBox">
+						<input type="submit" value="Registrarse">
+					</div>
+				</section>
+			</section>
+		</main>
 	</form>
-</main>
-     
-<button class="btn btn-outline-light back-button" onclick="window.history.back()">Regresar</button>
+	<button class="btn btn-outline-light back-button" onclick="window.history.back()">Regresar</button>
 
 </body>
 

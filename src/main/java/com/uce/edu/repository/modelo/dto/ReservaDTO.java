@@ -49,29 +49,28 @@ public class ReservaDTO {
 				+ ", fechaInicio=" + fechaInicio + ", fechaFin=" + fechaFin + ", estado=" + estado + "]";
 	}
 
-	//Setter and Getter
-	public String getCedulaCliente() {
+	public String getCedula() {
 		return cedula;
 	}
 
-	public void setCedulaCliente(String cedulaCliente) {
-		this.cedula = cedulaCliente;
+	public void setCedula(String cedula) {
+		this.cedula = cedula;
 	}
 
-	public String getNombreCliente() {
+	public String getNombre() {
 		return nombre;
 	}
 
-	public void setNombreCliente(String nombreCliente) {
-		this.nombre = nombreCliente;
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
 	}
 
-	public String getApellidoCliente() {
+	public String getApellido() {
 		return apellido;
 	}
 
-	public void setApellidoCliente(String apellidoCliente) {
-		this.apellido = apellidoCliente;
+	public void setApellido(String apellido) {
+		this.apellido = apellido;
 	}
 
 	public String getPlaca() {
@@ -129,5 +128,9 @@ public class ReservaDTO {
 	public void setEstado(String estado) {
 		this.estado = estado;
 	}
+
+	//Setter and Getter
+	
+	
 
 }

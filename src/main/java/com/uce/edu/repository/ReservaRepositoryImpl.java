@@ -44,7 +44,7 @@ public class ReservaRepositoryImpl implements IReservaRepository {
 						+ "(r.cliente.cedula, r.cliente.nombre, r.cliente.apellido,"
 						+ "r.vehiculo.placa, r.vehiculo.marca,"
 						+ "r.valorTotalAPagar, r.numero, r.fechaInicio, r.fechaFin, r.estado"
-						+ ") FROM Reserva r WHERE r.fechaInicio = :fechaInicio OR r.fechaFin= :fechaFin",
+						+ ") FROM Reserva r WHERE r.fechaInicio >=:fechaInicio OR r.fechaFin <=:fechaFin",
 				ReservaDTO.class);
 		myQuery.setParameter("fechaInicio", fechaInicio);
 		myQuery.setParameter("fechaFin", fechaFin);
