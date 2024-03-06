@@ -27,29 +27,30 @@ public class MenuPrincipalController {
 	
 	@Autowired
     private IReservaService iReservaService;
-
-
+	
 	// --> http://localhost:8080/menuPrincipal/inicio
 	@GetMapping("/inicio")
 	public String mostrarVista() {
 		return "inicio1";
 	}
 
-	// Funcionalidades de los botones del menu Principal
-
-
+	//--> http://localhost:8080/menuPrincipal/mostrarformularioLogin
+	
 	@GetMapping("/mostrarformularioLogin")
-	public String mostrarformularioLogin() {
+	public String mostrarformularioLogin(Model model) {
+		model.addAttribute("tituloMensaje", MensajesUsuario.ADVERTENCIA.getMensaje());
+		model.addAttribute("mensaje", MensajesUsuario.MENSAJE_PRINCIPAL.getMensaje());
 		return "formularioLogin2";
 	}
 	
-	// http://localhost:8080/menuPrincipal/mostrarMenuEmpleado
+	//--> http://localhost:8080/menuPrincipal/mostrarMenuEmpleado
 	@GetMapping("/mostrarMenuEmpleado")
 	public String mostrarMenuEmpledo() {
 		// Utilizamos "redirect:" para indicar la redirección
 		return "menuEmpleado8";
 	}
 
+	//--> http://localhost:8080/menuClientes/mostrarFormularioBuscarVehiculo
 	@GetMapping("/mostrarVistaReservasPorFechas")
 	public String mostrarVistaBuscarReserva(Model model) {
 		// Agregamos un objeto 'rangoFechasTO' al modelo
@@ -58,6 +59,7 @@ public class MenuPrincipalController {
 		return "formularioBuscarReserva17";
 	}
 	
+	//--> http://localhost:8080/menuClientes/buscarVehiculo
 	 @PostMapping("/buscarReservas")
 	    public String buscarReservas(@ModelAttribute RangoFechasTO rangoFechasTO, Model model) {
 	        // Accedemos a las fechas desde el objeto 'rangoFechasTO'
@@ -70,7 +72,6 @@ public class MenuPrincipalController {
 	        System.out.println(reservas);
 	        // Agregamos las reservas al modelo para mostrarlas en la vista de resultados
 	        model.addAttribute("reservas", reservas);
-
 	        // Retornamos la vista que mostrará las reservas encontradas
 	        return "vistaBuscarReserva18";
 	    }

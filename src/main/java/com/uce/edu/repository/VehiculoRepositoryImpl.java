@@ -29,7 +29,7 @@ public class VehiculoRepositoryImpl implements IVehiculoRepository {
 			TypedQuery<Vehiculo> myQuery = this.entityManager
 					.createQuery("SELECT v FROM Vehiculo v WHERE v.placa = :placa", Vehiculo.class);
 			myQuery.setParameter("placa", placa);
-			return myQuery.getSingleResult();
+			return myQuery.getResultList().get(0);
 		} catch (NoResultException e) {
 			return null;
 		}
@@ -47,6 +47,24 @@ public class VehiculoRepositoryImpl implements IVehiculoRepository {
 		query.setParameter("marca", marca);
 		query.setParameter("modelo", modelo);
 		return query.getResultList();
+	}
+
+	@Override
+	@Transactional(value = TxType.NOT_SUPPORTED)
+	public List<VehiculoDTO> seleccionarPorModeloMarcaDisponible(String marca, String modelo) {
+		// TODO Auto-generated method stub
+		try {
+			TypedQuery<VehiculoDTO> query = this.entityManager.createQuery(
+					"SELECT NEW com.uce.edu.repository.modelo.dto.VehiculoDTO("
+							+ "v.placa, v.modelo, v.marca, v.anioFabricacion, v.estado, v.valorPorDia) FROM Vehiculo v "
+							+ "WHERE v.marca= :marca AND v.modelo= :modelo AND v.estado = 'Disponible'",
+					VehiculoDTO.class);
+			query.setParameter("marca", marca);
+			query.setParameter("modelo", modelo);
+			return query.getResultList();
+		} catch (NoResultException e) {
+			return null;
+		}
 	}
 
 	@Override

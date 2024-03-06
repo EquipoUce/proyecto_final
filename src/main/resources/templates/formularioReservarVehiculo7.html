@@ -18,7 +18,7 @@
 	<form th:action="@{/menuClientes/ReservarVehiculo}" th:object="${ReservaVehiculoTO}" th:method="POST">
 		<main class="formulario">
 			<section class="formulario__header">
-				<h1>Reservar Vehiculo</h1>
+				<h1>Reservar Vehículo</h1>
 			</section>
 			<section class="inputForm">
 				<section class="inputForm">
@@ -48,7 +48,9 @@
 				</section>
 		</main>
 	</form>
-	<button class="btn btn-outline-light back-button" onclick="window.history.back()">Regresar</button>
+	<form th:action="@{/menuClientes/mostrarMenuCliente}" method="GET">
+		<button class="btn btn-outline-light back-button">Regresar a Menú Cliente</button>
+	</form>
 </body>
 
 </html>

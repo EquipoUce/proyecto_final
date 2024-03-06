@@ -166,4 +166,9 @@ public class ClienteServiceImpl implements IClienteService {
 		return this.vehiculoRepository.seleccionarPorModeloMarca(marca, modelo);
 	}
 
+	@Override
+	public List<VehiculoDTO> buscarPorModeloMarcaDisponible(String marca, String modelo) {
+		// TODO Auto-generated method stub
+		return this.vehiculoRepository.seleccionarPorModeloMarcaDisponible(marca, modelo);
+	}
 }

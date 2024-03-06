@@ -19,6 +19,7 @@ body {
     justify-content: center; /* Centra verticalmente */
     align-items: center;     /* Centra horizontalmente */
     margin: 0;               /* Elimina el margen predeterminado del body */
+    
 }
 
 .flex-container {

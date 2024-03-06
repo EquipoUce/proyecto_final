@@ -9,6 +9,8 @@ public interface IVehiculoRepository {
 	public Vehiculo seleccionarPorPlaca(String placa);
 
 	public List<VehiculoDTO> seleccionarPorModeloMarca(String marca, String modelo);
+	
+	public List<VehiculoDTO> seleccionarPorModeloMarcaDisponible(String marca, String modelo);
 
 	public void insertar(Vehiculo vehiculo);
 

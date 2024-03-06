@@ -14,13 +14,12 @@
 
 <body>
 
-	<body style="background: url(/imagenes/budgetLogin.jpg) center / cover"></body>
 	<main class="formulario">
 		<section class="formulario__header">
 			<h1>BUDGET: Login</h1>
 		</section>
-		<section class="inputForm"> 
-			<section class="inputForm"> 
+		<section class="inputForm">
+			<section class="inputForm">
 				<form th:action="@{/menuClientes/loginCliente}" th:method="POST">
 					<div class="inputBox">
 						<input type="text" name="cedula" placeholder="Cedula">
@@ -30,9 +29,13 @@
 					</div>
 				</form>
 			</section>
+			<h5 th:text="${tituloMensaje}"></h5>
+			<p th:text=${mensaje}>"</p>
 		</section>
 	</main>
-	<button class="btn btn-outline-light back-button" onclick="window.history.back()">Regresar</button>
+	<form th:action="@{/menuPrincipal/inicio}" method="GET">
+	<button class="btn btn-outline-light back-button" onclick="window.history.back()">Regresar a inicio</button>
+	</form>
 </body>
 
 </html>

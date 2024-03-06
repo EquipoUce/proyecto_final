@@ -32,7 +32,9 @@
 			</section>
 		</section>
 	</main>
-	<button class="btn btn-outline-light back-button" onclick="window.history.back()">Regresar</button>
+	<form th:action="@{/menuPrincipal/inicio}" method="GET">
+		<button class="btn btn-outline-light back-button" onclick="window.history.back()">Regresar a inicio</button>
+	</form>
 </body>
 
 </html>

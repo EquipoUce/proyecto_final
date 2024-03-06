@@ -14,11 +14,10 @@
 
 <body>
 
-	<body style="background: url(/imagenes/nuevoVehiculo.jpg) center / cover"></body>
 	<form th:action="@{/menuEmpleados/insertarVehiculo}" th:object="${vehiculoTO}" th:method="POST">
 		<main class="formulario">
 			<section class="formulario__header">
-				<h1>Ingresar vehiculo</h1>
+				<h1>Ingresar Vehículo</h1>
 			</section>
 			<section class="inputForm">
 				<section class="inputForm">
@@ -50,6 +49,9 @@
 						<input type="submit" value="Guardar">
 					</div>
 				</section>
+
+				<h5 th:text="${tituloMensaje}"></h5>
+				<p th:text=${mensaje}>"</p>
 		</main>
 	</form>
 

@@ -14,6 +14,8 @@ public interface IClienteService {
 
 	public List<VehiculoDTO> buscarPorModeloMarca(String marca, String modelo);
 
+	public List<VehiculoDTO> buscarPorModeloMarcaDisponible(String marca, String modelo);
+
 	public String reservarVehiculo(ReservaVehiculoTO reserva);
 
 }

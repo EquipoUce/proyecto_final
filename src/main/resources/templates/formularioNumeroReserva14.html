@@ -18,7 +18,7 @@
 	<form th:action="@{/menuEmpleados/buscarReservaPorNumero}" th:object="${reservaEmpleadoTO}" th:method="POST">
 		<main class="formulario">
 			<section class="formulario__header">
-				<h1>Ingrese el numero de reserva</h1>
+				<h1>Ingrese el Número de Reserva</h1>
 			</section>
 			<section class="inputForm">
 				<div class="inputBox">
@@ -27,10 +27,14 @@
 				<div class="inputBox">
 					<input type="submit" value="Buscar Reserva">
 				</div>
+				<h5 th:text="${tituloMensaje}"></h5>
+				<p th:text=${mensaje}>"</p>
 			</section>
 		</main>
 	</form>
-	<button class="btn btn-outline-light back-button" onclick="window.history.back()">Regresar</button>
+	<form th:action="@{/menuPrincipal/mostrarMenuEmpleado}" method="GET">
+		<button class="btn btn-outline-light back-button">Regresar a Menú Empleado</button>
+	</form>
 </body>
 
 </html>

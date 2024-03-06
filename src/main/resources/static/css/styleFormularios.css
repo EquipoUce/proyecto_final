@@ -1,97 +1,135 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@600&style=italic&display=swap');
+
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Noto Serif', sans-serif;
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: 'Noto Serif', sans-serif;
 }
+
 @media print {
- .formulario , .inputbox {
-  overflow: visible;
-  height: auto !important;
-  width: auto !important;
- }
+
+	.formulario,
+	.inputbox {
+		overflow: visible;
+		height: auto !important;
+		width: auto !important;
+	}
 }
+
 body {
-    min-height: 100vh;
-    display: flex;
-    justify-content: center; /* Centra verticalmente */
-    align-items: center;     /* Centra horizontalmente */
-    margin: 0;               /* Elimina el margen predeterminado del body */
+	min-height: 100vh;
+	display: flex; 
+	justify-content: center;
+	background: url(/imagenes/pexels-sebastian-palomino-1955134.jpg) center /cover;
+	align-items: center;
+	/* Centra horizontalmente */
+	margin: 0;
+	/* Elimina el margen predeterminado del body */
 }
 
-.formulario__header { /*Cuadrado de cristal donde se encuentra el titulo de la tabla */
-    width: 100%;
-    height: 15%;
-    background-color: rgba(246, 209, 177, 0.616);
-    padding: .3rem 1rem;
-    display: flex;
-    justify-content: center; /* Centrar horizontalmente */
-    align-items: center;
+.formulario__header {
+	/*Cuadrado de cristal donde se encuentra el titulo de la tabla */
+	width: 100%;
+	height: 15%;
+	background-color: rgba(246, 209, 177, 0.616);
+	padding: .3rem 1rem;
+	display: flex;
+	justify-content: center;
+	/* Centrar horizontalmente */
+	align-items: center;
 }
 
-.formulario__header h1 { /*Titulo de cuadrado de cristal */
-    margin: 0; /* Elimina el margen predeterminado del h1 */
-    font-size: 32px;
+.formulario__header h1 {
+	/*Titulo de cuadrado de cristal */
+	margin: 0;
+	/* Elimina el margen predeterminado del h1 */
+	font-size: 32px;
 }
 
-main.formulario {  /*Cuadrado de cristal donde se encuentra la tabla */
-    width: 40vw;
-    height: auto;
-    background-color: rgba(17, 17, 17, 0.536);
-    backdrop-filter: blur(7px); 
-    box-shadow: 0 .4rem .8rem #0005; /*sombra*/
-    border-radius: .8rem; /*bordes*/
-    overflow: hidden; /*acomodar la tabla*/
-}
-
-
-.formulario { /*formulario entero */
-
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-}
-
-.inputForm { /*dimension de formulario */
-    
-    position:  relative;
-    width: 80%;
-    max-height: 50%;
-    padding: 20px;
-    margin: auto; 
-}
-
-.inputForm .inputBox input{ /*Boton de input*/
-    width: 100%;
-    bottom: 20px;
-    margin-bottom: 10px;
-    background: rgba(255, 255, 255, 0.4);
-    border:  none;
-    outline: none;
-    padding: 10px 20px;
-    border-radius: 10px;
-    border:  1px solid rgba(255, 255, 255, 0.4);
-    border-right: 1px rgba(255, 255, 255, 0.4);;
-    border-bottom: 1px   rgba(255, 255, 255, 0.4);;
+main.formulario {
+	/*Cuadrado de cristal donde se encuentra la tabla */
+	width: 40vw;
+	height: auto;
+	background-color: rgba(17, 17, 17, 0.536);
+	backdrop-filter: blur(7px);
+	box-shadow: 0 .4rem .8rem #0005;
+	/*sombra*/
+	border-radius: .8rem;
+	/*bordes*/
+	overflow: hidden;
+	/*acomodar la tabla*/
 }
 
 
-.inputForm .inputBox input::placeholder{/*Palabras de indicacion*/
-    color: rgba(0, 0, 0, 0.8);
+.formulario {
+	/*formulario entero */
+
+	align-items: center;
+	justify-content: center;
+	width: 100%;
 }
 
-.inputForm .inputBox input[type = "submit"]{ /*Boton de guardar*/
-    background: rgb(255, 255, 255);
-    color: rgb(15, 13, 13);
-    width: 100%;
-    font-weight: 600;
-    cursor: pointer;
-    margin-bottom: 20 px;
-    transition: 0.3s;
+.inputForm {
+	/*dimension de formulario */
+
+	position: relative;
+	width: 80%;
+	max-height: 50%;
+	padding: 20px;
+	margin: auto;
 }
+
+.inputForm h5 {
+	margin: 0;
+    font-size: 16px;
+    color: rgb(255, 128, 0);
+    text-align: center; /* Centrar el texto horizontalmente */
+    margin-bottom: 10px; /* Espacio adicional después de cada párrafo */
+}
+.inputForm p {
+	margin: 0;
+    font-size: 16px;
+    color: white;
+    text-align: center; /* Centrar el texto horizontalmente */
+    margin-bottom: 10px; /* Espacio adicional después de cada párrafo */
+}
+
+.inputForm .inputBox input {
+	/*Boton de input*/
+	width: 100%;
+	bottom: 20px;
+	margin-bottom: 10px;
+	background: rgba(255, 255, 255, 0.4);
+	border: none;
+	outline: none;
+	padding: 10px 20px;
+	border-radius: 10px;
+	border: 1px solid rgba(255, 255, 255, 0.4);
+	border-right: 1px rgba(255, 255, 255, 0.4);
+	;
+	border-bottom: 1px rgba(255, 255, 255, 0.4);
+	;
+}
+
+
+.inputForm .inputBox input::placeholder {
+	/*Palabras de indicacion*/
+	color: rgba(0, 0, 0, 0.8);
+}
+
+.inputForm .inputBox input[type="submit"] {
+	/*Boton de guardar*/
+	background: rgb(255, 255, 255);
+	color: rgb(15, 13, 13);
+	width: 100%;
+	font-weight: 600;
+	cursor: pointer;
+	margin-bottom: 20 px;
+	transition: 0.3s;
+}
+
 .inputBox label {
-    color: white; /* Cambia el color del texto del label a blanco */
+	color: white;
+	/* Cambia el color del texto del label a blanco */
 }
-
-

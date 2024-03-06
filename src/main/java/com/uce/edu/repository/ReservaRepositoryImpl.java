@@ -9,6 +9,7 @@ import com.uce.edu.repository.modelo.Reserva;
 import com.uce.edu.repository.modelo.dto.ReservaDTO;
 
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.NoResultException;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.TypedQuery;
 import jakarta.persistence.criteria.CriteriaBuilder;
@@ -28,10 +29,14 @@ public class ReservaRepositoryImpl implements IReservaRepository {
 	@Transactional(value = TxType.NOT_SUPPORTED)
 	public Reserva seleccionarPorNumeroReserva(String numeroReserva) {
 		// TODO Auto-generated method stub
-		TypedQuery<Reserva> myQuery = this.entityManager.createQuery("SELECT r FROM Reserva r WHERE r.numero =:numero",
-				Reserva.class);
-		myQuery.setParameter("numero", numeroReserva);
-		return myQuery.getSingleResult();
+		try {
+			TypedQuery<Reserva> myQuery = this.entityManager
+					.createQuery("SELECT r FROM Reserva r WHERE r.numero =:numero", Reserva.class);
+			myQuery.setParameter("numero", numeroReserva);
+			return myQuery.getSingleResult();
+		} catch (NoResultException e) {
+			return null;
+		}
 	}
 
 	@Override
@@ -77,7 +82,7 @@ public class ReservaRepositoryImpl implements IReservaRepository {
 		Predicate condicionFechaInicio = criteriaBuilder.lessThanOrEqualTo(myFrom.get("fechaInicio"), fechaInicio);
 		// Cree un predicado para probar si el primer argumento es menor que el segundo.
 		Predicate condicionFechaFin = criteriaBuilder.greaterThanOrEqualTo(myFrom.get("fechaFin"), fechaFin); // equal(myFrom.get("fechaFin"),
-																										// fechaFin);
+		// fechaFin);
 		Predicate condicionFinal = criteriaBuilder.and(condicionFechaInicio, condicionFechaFin);
 
 		criteriaQuery.select(myFrom).where(condicionFinal);

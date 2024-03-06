@@ -14,7 +14,7 @@
 
 <body>
 
-	<body style="background: url(/imagenes/nuevocliente.jpg) center / cover"></body>
+<body style="background: url(/imagenes/pexels-sebastian-palomino-1955134.jpg) center / cover"></body>
 	<form th:action="@{/menuClientes/registrarCliente}" th:object="${clienteTO}" th:method="POST">
 		<main class="formulario">
 			<section class="formulario__header">
@@ -45,6 +45,8 @@
 					<div class="inputBox">
 						<input type="submit" value="Registrarse">
 					</div>
+					<h5>¡Advertencia!</h5>
+					<p>Si no llena todos los campos no podra continuar</p>
 				</section>
 			</section>
 		</main>

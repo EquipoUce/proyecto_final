@@ -14,11 +14,10 @@
 
 <body>
 
-	<body style="background: url(/imagenes/pexels-sebastian-palomino-1955134.jpg) center / cover"></body>
 	<form th:action="@{/menuClientes/buscarVehiculo}" th:object="${vehiculoTO}" th:method="POST">
 		<main class="formulario">
 			<section class="formulario__header">
-				<h1>Buscar Vehiculo</h1>
+				<h1>Buscar Vehículo</h1>
 			</section>
 			<section class="inputForm">
 				<section class="inputForm">
@@ -33,11 +32,16 @@
 					<div class="inputBox">
 						<input type="submit" value="Buscar">
 					</div>
+					<h5 th:text="${tituloMensaje}"></h5>
+					<p th:text=${mensaje}>"</p>
 				</section>
 			</section>
 		</main>
 	</form>
-	<button class="btn btn-outline-light back-button" onclick="window.history.back()">Regresar</button>
+	<form th:action="@{/menuClientes/mostrarMenuCliente}" method="GET">
+		<button class="btn btn-outline-light back-button">Regresar</button>
+	</form>
+
 </body>
 
 </html>

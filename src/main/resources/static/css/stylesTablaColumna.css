@@ -16,7 +16,7 @@
 
 body {
     min-height: 100vh;
-    background: url(imagenes/formularioCarro.jpg) center / cover;  /*Fondo*/
+    background: url(/imagenes/pexels-sebastian-palomino-1955134.jpg) center / cover;
     display: flex;
     justify-content: center; /* Centra verticalmente */
     align-items: center;     /* Centra horizontalmente */
