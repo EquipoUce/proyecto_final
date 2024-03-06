@@ -76,7 +76,7 @@ public class ReservaRepositoryImpl implements IReservaRepository {
 		// Where
 		Predicate condicionFechaInicio = criteriaBuilder.lessThanOrEqualTo(myFrom.get("fechaInicio"), fechaInicio);
 		// Cree un predicado para probar si el primer argumento es menor que el segundo.
-		Predicate condicionFechaFin = criteriaBuilder.greaterThan(myFrom.get("fechaFin"), fechaFin); // equal(myFrom.get("fechaFin"),
+		Predicate condicionFechaFin = criteriaBuilder.greaterThanOrEqualTo(myFrom.get("fechaFin"), fechaFin); // equal(myFrom.get("fechaFin"),
 																										// fechaFin);
 		Predicate condicionFinal = criteriaBuilder.and(condicionFechaInicio, condicionFechaFin);
 

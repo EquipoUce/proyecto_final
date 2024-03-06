@@ -110,14 +110,20 @@ public class MenuClienteController {
     public String ReservarVehiculo(@ModelAttribute("ReservaVehiculoTO") ReservaVehiculoTO reservaVehiculoTO, Model model) {
         String numeroReserva = iClienteService.reservarVehiculo(reservaVehiculoTO);
         //No existe disponibilidad en ese rango de fechas//
-        
-        if(numeroReserva!=null) {
+        if(numeroReserva!="nulo") {
         	model.addAttribute("mensajeExito", "La reserva se ha realizado con éxito. Número de reserva: " + numeroReserva);
         	return "mensajeTransaccionExitosa";
         }
         else {
-        	return "redirect:/menuClientes/formularioReservarVehiculo7";
+        	return "redirect:/menuClientes/vistaReservaFallida";
         }
+    }
+        
+        
+        @GetMapping("/vistaReservaFallida")
+        public String ReservarVehiculoF(Model model) {
+            	model.addAttribute("mensajeFallido", "La reserva No se realizo");
+            	return "mensajeTransaccionFallida";
     }
     
     

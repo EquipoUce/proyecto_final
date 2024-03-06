@@ -117,8 +117,8 @@ public class EmpleadoService implements IEmpleadoService {
 		Reserva res = this.reservaRepository.seleccionarPorNumeroReserva(numeroReserva);
 
 		if (res != null) {
-			String fechaCadena = " ";
-			fechaCadena.concat(res.getFechaInicio().toString()).concat("-").concat(res.getFechaFin().toString());
+			String fechaCadena = "";
+			fechaCadena = fechaCadena+res.getFechaInicio().toString()+"-"+res.getFechaFin().toString();
 			ReservaEmpleadoTO reseDTO = new ReservaEmpleadoTO();
 			reseDTO.setPlaca(res.getVehiculo().getPlaca());
 			reseDTO.setModelo(res.getVehiculo().getModelo());

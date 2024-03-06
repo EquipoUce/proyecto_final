@@ -92,10 +92,10 @@ public class ProyectoFinalApplication implements CommandLineRunner {
 		//this.iVehiculoService.buscarPorModeloMarca("Toyota", "Sedan");
 		//this.iVehiculoService.buscarPorPlaca("ABC456");
 
-		this.reservaService.reportarPorRangoFecha(LocalDateTime.of(2024, 3, 8, 0, 0),
-				LocalDateTime.of(2024, 3, 10, 0, 0));
-		this.empleadoService.generarRservaEmpleadoDTO("R-0");
-		this.reservaService.buscarPorNumeroReserva("R-0");
+//		this.reservaService.reportarPorRangoFecha(LocalDateTime.of(2024, 3, 8, 0, 0),
+//				LocalDateTime.of(2024, 3, 10, 0, 0));
+//		this.empleadoService.generarRservaEmpleadoDTO("R-0");
+//		this.reservaService.buscarPorNumeroReserva("R-0");
 
 	}
 

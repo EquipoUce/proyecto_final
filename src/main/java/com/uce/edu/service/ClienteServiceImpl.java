@@ -2,6 +2,7 @@ package com.uce.edu.service;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -65,48 +66,58 @@ public class ClienteServiceImpl implements IClienteService {
 		Reserva reseC = new Reserva();
 		Cliente clie = this.clienteRepository.seleccionarPorCedula(cedula);
 		Vehiculo vehi = this.vehiculoRepository.seleccionarPorPlaca(placa);
-		List<Reserva> lista = this.reservaRepository.seleccionarPorRango(fechaInicio, fechaFin);
 		List<Reserva> listaR = this.reservaRepository.seleccionarTodos();
+		System.out.println("placa enviada: " + placa);
+		System.out.println("fechas enviada inicio: " + fechaInicio);
+		System.out.println("fechas envida fin: " + fechaFin);
+		System.out.println("elementos lista Reservas: " + listaR.size());
+		
+		List<Boolean> validar = new ArrayList<>();
+		Boolean total = false;
 
-		try {
+		if (reservaV.getNumeroTarjeta() != " ") {
 
-			if (reservaV.getNumeroTarjeta() != " ") {
+			if (listaR.isEmpty() != true) {
+				for (Reserva r : listaR) {
+					if (r.getVehiculo().getPlaca().equals(vehi.getPlaca())) {
+						// si esta en la reserva
+						System.out.println("si hay un vehiculo con esa placa en la reserva");
 
-				for (Reserva r : lista) {
-					if (r.getVehiculo().getPlaca().equals(placa)) {
-						reseC = this.reservaRepository.seleccionarPorNumeroReserva(r.getNumeroReserva());
+						if ((fechaInicio.isAfter(r.getFechaFin()) && fechaFin.isAfter(r.getFechaFin()))) { // ||//
+																											// (fechaInicio.isBefore(r.getFechaInicio())fechaFin.isBefore(r.getFechaInicio()))
+							System.out.println("cumple rango -inf");
+							System.out.println("cumple rango +inf");
+							System.out.println("cumple con un rango valido");
+							validar.add(true);
+							System.out.println("true");
+							reseC = this.reservaRepository.seleccionarPorNumeroReserva(r.getNumeroReserva());
+						} else {
+							if (fechaInicio.isBefore(r.getFechaFin()) && fechaFin.isBefore(r.getFechaFin())) {
+								validar.add(true);
+								reseC = this.reservaRepository.seleccionarPorNumeroReserva(r.getNumeroReserva());
+							} else {
+								validar.add(false);
+								System.out.println("false");
+								reseC = this.reservaRepository.seleccionarPorNumeroReserva(r.getNumeroReserva());
+							}
+						}
+					} else {
+						// no esta en reserva es decir no hay ninguna placa similar
+						System.out.println("si hay un vehiculo con esa placa en la reserva NEGATIVO");
+						System.out.println("no esta en reserva");
+					}
+
+				} // end for
+					// validacion fechas
+				total = true;
+				for (Boolean b : validar) {
+					if (b == false) {
+						total = false;
+						break;
 					}
 				}
-				if (reseC.getFechaFin() != null && reseC.getFechaInicio() != null) {
-					// auto en la lista
 
-					if ((fechaInicio.isAfter(reseC.getFechaFin()) && fechaFin.isAfter(reseC.getFechaFin()))
-							|| (fechaInicio.isBefore(reseC.getFechaInicio())
-									&& fechaFin.isBefore(reseC.getFechaInicio()))) {
-						Integer dias = fechaFin.getDayOfMonth() - fechaInicio.getDayOfMonth();
-						rese.setValorSubTotal(vehi.getValorPorDia().multiply(new BigDecimal(dias)));
-						rese.setValorICE(rese.getValorSubTotal().multiply(new BigDecimal(0.15F)));
-						rese.setValorTotalAPagar(rese.getValorSubTotal().add(rese.getValorICE()));
-						rese.setCliente(clie);
-						rese.setEstado("Generada");
-						rese.setFechaFin(fechaFin);
-						rese.setFechaInicio(fechaInicio);
-						rese.setVehiculo(vehi);
-						rese.setNumeroReserva("R-" + (listaR.size() + 1));
-						this.reservaRepository.insertar(rese);
-						return rese.getNumeroReserva();
-
-					} else {
-						// indisponible en esas fechas
-						System.out.println("No existe disponibilidad en ese rango de fechas");
-						System.out.println("Disponible desdues de la fecha: " + reseC.getFechaFin());
-						System.out.println("Disponible antes de la fecha: " + reseC.getFechaInicio());
-						return null;
-
-					}
-				} else {
-					// auto no en la lista
-
+				if (total) {
 					Integer dias = fechaFin.getDayOfMonth() - fechaInicio.getDayOfMonth();
 					rese.setValorSubTotal(vehi.getValorPorDia().multiply(new BigDecimal(dias)));
 					rese.setValorICE(rese.getValorSubTotal().multiply(new BigDecimal(0.15F)));
@@ -116,20 +127,37 @@ public class ClienteServiceImpl implements IClienteService {
 					rese.setFechaFin(fechaFin);
 					rese.setFechaInicio(fechaInicio);
 					rese.setVehiculo(vehi);
-					rese.setNumeroReserva("R-" + listaR.size());
+					rese.setNumeroReserva("R-" + (listaR.size() + 1));
 					this.reservaRepository.insertar(rese);
 					return rese.getNumeroReserva();
-
+				} else {
+					System.out.println("cumple con un rango valido NEGATIVO");
+					System.out.println("No existe disponibilidad en ese rango de fechas");
+					System.out.println("Disponible despues de la fecha: " + reseC.getFechaFin());
+					return "nulo";
 				}
+
 			} else {
-				System.out.println("Error tarjeta NULL");
-				return null;
+				System.out.println("Primera Reserva");
+				Integer dias = fechaFin.getDayOfMonth() - fechaInicio.getDayOfMonth();
+				rese.setValorSubTotal(vehi.getValorPorDia().multiply(new BigDecimal(dias)));
+				rese.setValorICE(rese.getValorSubTotal().multiply(new BigDecimal(0.15F)));
+				rese.setValorTotalAPagar(rese.getValorSubTotal().add(rese.getValorICE()));
+				rese.setCliente(clie);
+				rese.setEstado("Generada");
+				rese.setFechaFin(fechaFin);
+				rese.setFechaInicio(fechaInicio);
+				rese.setVehiculo(vehi);
+				rese.setNumeroReserva("R-" + (listaR.size() + 1));
+				this.reservaRepository.insertar(rese);
+				return rese.getNumeroReserva();
 			}
-		} catch (Exception e) {
-			// TODO: handle exception
-			System.out.println(e.toString());
-			return null;
+
+		} else {
+			System.out.println("tarjeta null");
+			return "nulo";
 		}
+
 	}
 
 	@Override
